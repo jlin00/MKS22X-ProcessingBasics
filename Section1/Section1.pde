@@ -40,10 +40,29 @@ class Visualizer {
 
     //???WRITE THIS METHOD!!!
     //THESE ARE WRONG: They just illustrate how they could look
-    fill(255, 0, 0);
+    
+    /*
+    fill(255, 0, 0); //red
     rect(x+40, y+100, 60, 50);
     fill(0, 255, 0);
-    rect(x+120, y+50, 60, 50);
+    rect(x+120, y+100, 60, -50);
+    */
+    
+    
+    for (int i = 0; i < values.length; i++){
+      float val = values[i];
+      if (val < 0){ //negative
+        fill(255, 0, 0); //red
+        rect(x+40*i, y+100, 40, -1 * val);
+        print(val);
+      }
+      else{ //positive
+        fill(0, 255, 0); //green
+        rect(x+40*i, y+100, 40, -1 * val);
+        print(val);
+      }
+    }
+    
 
 
     //Width of the visualizer is 400!
@@ -53,7 +72,15 @@ class Visualizer {
   void update() {
     //???WRITE THIS METHOD!!!
     for (int i = 0; i < values.length; i++) {
-      values[i] += speeds[i];
+      /*
+      if (values[i] == y){
+        values[i] += speeds[i];
+      }
+      if (values[i] == (y + 200)){
+        values[i] -= speeds[i];
+      }
+      */
+      
       //??? keep them values between max/min value
 
       //??? reverse the speeds so they oscillate up/down when they reach max/min
