@@ -69,14 +69,12 @@ class Visualizer {
   void update() {
     //???WRITE THIS METHOD!!!
     for (int i = 0; i < values.length; i++) {
-      /*
-      if (values[i] == y){
-        values[i] += speeds[i];
+      values[i] += speeds[i]; //the speed updates the values. Do not touch this.
+      
+      if (values[i] >= 100 || values[i] <= -100){
+        speeds[i] *= -1;
       }
-      if (values[i] == (y + 200)){
-        values[i] -= speeds[i];
-      }
-      */
+
       
       //??? keep them values between max/min value
 
