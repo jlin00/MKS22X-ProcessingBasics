@@ -53,14 +53,11 @@ class Visualizer {
       float val = values[i];
       if (val < 0){ //negative
         fill(255, 0, 0); //red
-        rect(x+40*i, y+100, 40, -1 * val);
-        print(val);
       }
       else{ //positive
         fill(0, 255, 0); //green
-        rect(x+40*i, y+100, 40, -1 * val);
-        print(val);
       }
+      rect(x+40*i, y+100, 40, -1 * val);
     }
     
 
