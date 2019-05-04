@@ -38,7 +38,7 @@ void draw() {
   background(50);  
   
   fill(255);
-  text("Click the mouse to increase levels, press a key to decrease levles",20,20);
+  text("Click the mouse to increase levels, press a key to decrease levels",20,20);
 
   gasket(levels,0, height-10, width, height-10, width/2, 10);
 
