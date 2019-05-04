@@ -1,5 +1,5 @@
-int MAX_VALUE = 100;
-int MIN_VALUE = -100;
+//int MAX_VALUE = 100; //only if height is not variable in visualizer
+//int MIN_VALUE = -100;
 Visualizer v;
 
 /*You are simulating a visualizer of multiple values
@@ -8,17 +8,34 @@ Visualizer v;
  */
 class Visualizer {
   float x, y;
+  int num_vals, width, height;
   float [] values;
   float [] speeds;
-  Visualizer(float x, float y) {
-    this.x = x;
+  Visualizer(float x, float y){ //default constructor
+    this.x = x; 
     this.y = y;
+    num_vals = 10;
+    width = 400;
+    height = 200;
     values = new float[10];
     speeds = new float[10];
     for (int i = 0; i < values.length; i++) {
-      values[i] = random(-99, 99);
-      speeds[i] = random(2);
+      values[i] = random(-99, 99); //random value for value
+      speeds[i] = random(2); //random value for speed 
     }
+  }
+  Visualizer(float x, float y, int num_vals, int width, int height) { //constructor with variable number of values, width and height
+    this.x = x;
+    this.y = y;
+    this.num_vals = num_vals;
+    this.width = width;
+    this.height = height;
+    values = new float[num_vals];
+    speeds = new float[num_vals];
+    for (int i = 0; i < values.length; i++) {
+      values[i] = random(-1 * height / 2 + 1, height / 2 - 1); //random value for value, depends on height 
+      speeds[i] = random(2); //random value for speed 
+    } 
   }
 
   void display() {
@@ -26,12 +43,12 @@ class Visualizer {
     //You can assume 10, but it would be even better 
     //if you could modify it to be larger increments.
     fill(255);
-    rect(x, y, 400, 200);
+    rect(x, y, width, height); //variable width and height 
     //This is a 200x400 box.
     //The width of the visualizer is 400! This rect is the border
 
     //the line is the 0 y-value, the top is 100, the bottom is -100
-    line(x, y+100, x+400, y+100);
+    line(x, y+(height)/2, x+width, y+(height)/2); //line through middle of graph, depends on width and height 
 
     //You need to use a loop. You need to make the HEIGHT of the bars 
     //the values in the array.
@@ -57,7 +74,8 @@ class Visualizer {
       else{ //positive
         fill(0, 255, 0); //green
       }
-      rect(x+40*i, y+100, 40, -1 * val);
+      float bar_width = width / num_vals; //adjusts for variable size visualizer, with variable number of values 
+      rect(x+bar_width*i, y+height/2, bar_width, -1 * val);
     }
     
 
@@ -71,7 +89,7 @@ class Visualizer {
     for (int i = 0; i < values.length; i++) {
       values[i] += speeds[i]; //the speed updates the values. Do not touch this.
       
-      if (values[i] >= 100 || values[i] <= -100){
+      if (values[i] >= height / 2 || values[i] <= height / 2 * -1){ //when bar reaches max/min, reverses speed 
         speeds[i] *= -1;
       }
 
@@ -87,7 +105,7 @@ class Visualizer {
 
 void setup() {
   size(600, 500);
-  v = new Visualizer(20, 20);
+  v = new Visualizer(20, 20, 10, 400, 200);
 }
 void draw() {
   background(255);
