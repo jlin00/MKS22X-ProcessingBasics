@@ -49,7 +49,8 @@ class Visualizer {
 
     //the line is the 0 y-value, the top is 100, the bottom is -100
     line(x, y+(height)/2, x+width, y+(height)/2); //line through middle of graph, depends on width and height 
-
+    //line(x, y+(height)/4, x+width, y+(height)/4); visualizes graph in vertical quarters
+    //line(x, y+3*(height)/4, x+width, y+3*(height)/4);
     //You need to use a loop. You need to make the HEIGHT of the bars 
     //the values in the array.
     //Negative values are red, and go below the line.
@@ -68,8 +69,14 @@ class Visualizer {
     
     for (int i = 0; i < values.length; i++){
       float val = values[i];
-      if (val < 0){ //negative
-        fill(255, 0, 0); //red
+      if (val < -1 * height / 4){ //red
+        fill(255, 0, 0); 
+      }
+      else if (val < 0){ //orange
+        fill(255, 102, 0); 
+      }
+      else if (val < height / 4){ //yellow
+        fill(255, 255, 0); 
       }
       else{ //positive
         fill(0, 255, 0); //green
